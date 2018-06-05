@@ -5,4 +5,13 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Firebase.Auth.Unofficial" Version="0.0.1" />
+    <PackageReference Include="Google.Apis" Version="1.34.0" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.34.0" />
+    <PackageReference Include="Grpc" Version="1.12.0" />
+    <PackageReference Include="Grpc.Core" Version="1.12.0" />
+    <PackageReference Include="Grpc.Tools" Version="1.12.0" />
+  </ItemGroup>
+
 </Project>

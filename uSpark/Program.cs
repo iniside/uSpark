@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Firebase.Auth.Unofficial;
+using Google.Apis.Auth;
+using Google.Apis.Auth.OAuth2;
 
 namespace uSpark
 {
@@ -7,6 +11,20 @@ namespace uSpark
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+
+            FirebaseConfig config = new FirebaseConfig();
+            config.ApiKey = "AIzaSyCEcMeVWd363x9QkgL0kwoYSLfPbd3c0KY";
+            FirebaseAuthProvider fbProvider = new FirebaseAuthProvider(config);
+
+            Task<FirebaseAuthLink> result =  fbProvider.SignInWithEmailAndPasswordAsync("iniside@live.com", "qwerty");
+
+            result.Wait();
+
+            FirebaseAuthLink authResult = result.Result;
+
+            GoogleWebAuthorizationBroker.AuthorizeAsync
+
+            Console.ReadLine();
         }
     }
 }
