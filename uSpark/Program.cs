@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Endpoints.Hellohorld.Sraka;
 using Firebase.Auth.Unofficial;
 using Google.Apis.Auth;
 using Google.Apis.Auth.OAuth2;
+using Grpc.Core;
 
 namespace uSpark
 {
@@ -12,19 +14,16 @@ namespace uSpark
         {
             Console.WriteLine("Hello World!");
 
-            FirebaseConfig config = new FirebaseConfig();
-            config.ApiKey = "";
-            FirebaseAuthProvider fbProvider = new FirebaseAuthProvider(config);
+            Channel channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
+            var client = new Greeter.GreeterClient(channel);
+            String user = "iniside";
+            var reply = client.SayHello(new HelloRequest { Name = user });
 
-            Task<FirebaseAuthLink> result =  fbProvider.SignInWithEmailAndPasswordAsync("iniside@live.com", "qwerty");
+            Console.WriteLine("Response message: " + reply.Message);
 
-            result.Wait();
+            Console.ReadKey();
 
-            FirebaseAuthLink authResult = result.Result;
-
-            GoogleWebAuthorizationBroker.AuthorizeAsync
-
-            Console.ReadLine();
+            channel.ShutdownAsync().Wait();
         }
     }
 }

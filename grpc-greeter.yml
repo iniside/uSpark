@@ -1,0 +1,16 @@
+spec:
+  containers:
+  - name: esp
+    image: gcr.io/endpoints-release/endpoints-runtime:1
+    args: [
+      "--http2_port=9000",
+      "--service=hellohorld3.endpoints.sa-game-206414.cloud.goog",
+      "--rollout_strategy=managed",
+      "--backend=grpc://127.0.0.1:8000"
+    ]
+    ports:
+      - containerPort: 9000
+  - name: greeter
+    image: eu.gcr.io/sa-game-206414/greetergervice:v1
+    ports:
+      - containerPort: 8000

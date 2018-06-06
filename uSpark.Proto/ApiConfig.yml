@@ -1,0 +1,23 @@
+type: google.api.Service
+config_version: 3
+
+#
+# Name of the service configuration.
+#
+name: hellohorld3.endpoints.sa-game-206414.cloud.goog
+
+#
+# API title to appear in the user interface (Google Cloud Console).
+#
+title: Greeter Test gRPC API
+apis:
+- name: endpoints.hellohorld.sraka.Greeter
+
+#
+# API usage restrictions.
+#
+usage:
+  rules:
+  # ListShelves methods can be called without an API Key.
+  - selector: endpoints.hellohorld.sraka.Greeter.SayHello
+    allow_unregistered_calls: true
