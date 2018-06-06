@@ -13,7 +13,7 @@ namespace uSpark
             Console.WriteLine("Hello World!");
 
             FirebaseConfig config = new FirebaseConfig();
-            config.ApiKey = "AIzaSyCEcMeVWd363x9QkgL0kwoYSLfPbd3c0KY";
+            config.ApiKey = "";
             FirebaseAuthProvider fbProvider = new FirebaseAuthProvider(config);
 
             Task<FirebaseAuthLink> result =  fbProvider.SignInWithEmailAndPasswordAsync("iniside@live.com", "qwerty");
