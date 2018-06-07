@@ -21,3 +21,5 @@ usage:
   # ListShelves methods can be called without an API Key.
   - selector: endpoints.hellohorld.sraka.Greeter.SayHello
     allow_unregistered_calls: true
+  - selector: endpoints.hellohorld.sraka.Greeter.SayHelloAuth
+    allow_unregistered_calls: false

@@ -1,4 +1,5 @@
-﻿using Endpoints.Hellohorld.Sraka;
+﻿using Backend.Helloworld;
+using Endpoints.Hellohorld.Sraka;
 using Grpc.Core;
 using System;
 using System.Threading.Tasks;
@@ -7,6 +8,8 @@ namespace GreeterServer
 {
     class GreeterImpl : Greeter.GreeterBase
     {
+        
+
         public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
         {
             return Task.FromResult<HelloReply>(new HelloReply { Message = "Hello " + request.Name });
@@ -14,7 +17,12 @@ namespace GreeterServer
 
         public override Task<HelloReply> SayHelloAgain(HelloRequest request, ServerCallContext context)
         {
-            return Task.FromResult<HelloReply>(new HelloReply { Message = "Hello Again " + request.Name });
+            Channel channel = new Channel("grcp://grpc-greeter-backend", ChannelCredentials.Insecure);
+            var backendClient = new GreeterBackend.GreeterBackendClient(channel);
+
+            var reply = backendClient.SayHelloFromBackend(new BackendHelloRequest { Name = "iniside" });
+            channel.ShutdownAsync().Wait(); //not neeed to wait, but easier to debug now.
+            return Task.FromResult<HelloReply>(new HelloReply { Message = "Hello Again " + request.Name + " " + reply.Message });
         }
 
         public override Task<HelloReply> SayHelloAuth(HelloRequest request, ServerCallContext context)
@@ -31,7 +39,7 @@ namespace GreeterServer
             Server server = new Server
             {
                 Services = { Greeter.BindService(new GreeterImpl()) },
-                Ports = { new ServerPort("127.0.0.1", 50051, ServerCredentials.Insecure)}
+                Ports = { new ServerPort("127.0.0.1", 9000, ServerCredentials.Insecure)}
             };
 
             server.Start();

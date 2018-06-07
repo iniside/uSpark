@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+
+package backend.helloworld;
+
+
+
+// The greeting service definition.
+service GreeterBackend {
+  // Sends a greeting
+  rpc SayHelloFromBackend (BackendHelloRequest) returns (BackendHelloReply) {}
+}
+
+// The request message containing the user's name.
+message BackendHelloRequest {
+  string Name = 1;
+}
+
+// The response message containing the greetings
+message BackendHelloReply {
+  string Message = 1;
+}
