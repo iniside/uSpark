@@ -17,7 +17,7 @@ namespace GreeterServer
 
         public override Task<HelloReply> SayHelloAgain(HelloRequest request, ServerCallContext context)
         {
-            Channel channel = new Channel("grcp://grpc-greeter-backend", ChannelCredentials.Insecure);
+            Channel channel = new Channel("grcp://grpc-greeter-backend", 8080, ChannelCredentials.Insecure);
             var backendClient = new GreeterBackend.GreeterBackendClient(channel);
 
             var reply = backendClient.SayHelloFromBackend(new BackendHelloRequest { Name = "iniside" });

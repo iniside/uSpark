@@ -29,6 +29,6 @@ spec:
         app: grpc-greeter-backend
     spec:
       - name: greeter
-        image: eu.gcr.io/sa-game-206414/greeter-service:v1
+        image: eu.gcr.io/sa-game-206414/greeter-backend:v1
         ports:
           - containerPort: 9000
