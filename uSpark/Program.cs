@@ -14,10 +14,10 @@ namespace uSpark
         {
             Console.WriteLine("Hello World!");
 
-            Channel channel = new Channel("35.205.34.141:80", ChannelCredentials.Insecure);
+            Channel channel = new Channel("35.189.231.210:80", ChannelCredentials.Insecure);
             var client = new Greeter.GreeterClient(channel);
             String user = "iniside";
-            var reply = client.SayHelloAgain(new HelloRequest { Name = user });
+            var reply = client.SayHello(new HelloRequest { Name = user });
 
             Console.WriteLine("Response message: " + reply.Message);
 

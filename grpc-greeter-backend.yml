@@ -12,7 +12,7 @@ spec:
   - port: 9000
     targetPort: 9000
     protocol: TCP
-    name: http2
+    name: http2900
   selector:
     app: grpc-greeter-backend
   type: ClusterIP
@@ -28,7 +28,8 @@ spec:
       labels:
         app: grpc-greeter-backend
     spec:
-      - name: greeter
+      containers:
+      - name: greeter-backend
         image: eu.gcr.io/sa-game-206414/greeter-backend:v1
         ports:
           - containerPort: 9000
