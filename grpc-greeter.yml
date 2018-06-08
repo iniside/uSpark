@@ -6,7 +6,7 @@ spec:
   ports:
   # Port that accepts gRPC and JSON/HTTP2 requests over HTTP.
   - port: 80
-    targetPort: 9000
+    targetPort: 9100
     protocol: TCP
     name: http2
   selector:
@@ -28,13 +28,13 @@ spec:
       - name: esp
         image: gcr.io/endpoints-release/endpoints-runtime:1
         args: [
-          "--http2_port=9000",
+          "--http2_port=9100",
           "--service=hellohorld3.endpoints.sa-game-206414.cloud.goog",
           "--rollout_strategy=managed",
-          "--backend=grpc://127.0.0.1:50051"
+          "--backend=grpc://127.0.0.1:9000"
         ]
         ports:
-          - containerPort: 9000
+          - containerPort: 9100
       - name: greeter
         image: eu.gcr.io/sa-game-206414/greeter-service:v1
         ports:
