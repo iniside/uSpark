@@ -25,15 +25,15 @@ namespace Backend.Helloworld {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChdIZWxsb1dvcmxkQmFja2VuZC5wcm90bxISYmFja2VuZC5oZWxsb3dvcmxk",
-            "IiMKE0JhY2tlbmRIZWxsb1JlcXVlc3QSDAoETmFtZRgBIAEoCSIkChFCYWNr",
-            "ZW5kSGVsbG9SZXBseRIPCgdNZXNzYWdlGAEgASgJMnkKDkdyZWV0ZXJCYWNr",
-            "ZW5kEmcKE1NheUhlbGxvRnJvbUJhY2tlbmQSJy5iYWNrZW5kLmhlbGxvd29y",
-            "bGQuQmFja2VuZEhlbGxvUmVxdWVzdBolLmJhY2tlbmQuaGVsbG93b3JsZC5C",
-            "YWNrZW5kSGVsbG9SZXBseSIAYgZwcm90bzM="));
+            "IjQKE0JhY2tlbmRIZWxsb1JlcXVlc3QSDAoETmFtZRgBIAEoCRIPCgdBZGRy",
+            "ZXNzGAIgASgJIiQKEUJhY2tlbmRIZWxsb1JlcGx5Eg8KB01lc3NhZ2UYASAB",
+            "KAkyeQoOR3JlZXRlckJhY2tlbmQSZwoTU2F5SGVsbG9Gcm9tQmFja2VuZBIn",
+            "LmJhY2tlbmQuaGVsbG93b3JsZC5CYWNrZW5kSGVsbG9SZXF1ZXN0GiUuYmFj",
+            "a2VuZC5oZWxsb3dvcmxkLkJhY2tlbmRIZWxsb1JlcGx5IgBiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Backend.Helloworld.BackendHelloRequest), global::Backend.Helloworld.BackendHelloRequest.Parser, new[]{ "Name" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Backend.Helloworld.BackendHelloRequest), global::Backend.Helloworld.BackendHelloRequest.Parser, new[]{ "Name", "Address" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Backend.Helloworld.BackendHelloReply), global::Backend.Helloworld.BackendHelloReply.Parser, new[]{ "Message" }, null, null, null)
           }));
     }
@@ -70,6 +70,7 @@ namespace Backend.Helloworld {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public BackendHelloRequest(BackendHelloRequest other) : this() {
       name_ = other.name_;
+      address_ = other.address_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -89,6 +90,17 @@ namespace Backend.Helloworld {
       }
     }
 
+    /// <summary>Field number for the "Address" field.</summary>
+    public const int AddressFieldNumber = 2;
+    private string address_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Address {
+      get { return address_; }
+      set {
+        address_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as BackendHelloRequest);
@@ -103,6 +115,7 @@ namespace Backend.Helloworld {
         return true;
       }
       if (Name != other.Name) return false;
+      if (Address != other.Address) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -110,6 +123,7 @@ namespace Backend.Helloworld {
     public override int GetHashCode() {
       int hash = 1;
       if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Address.Length != 0) hash ^= Address.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -127,6 +141,10 @@ namespace Backend.Helloworld {
         output.WriteRawTag(10);
         output.WriteString(Name);
       }
+      if (Address.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Address);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -137,6 +155,9 @@ namespace Backend.Helloworld {
       int size = 0;
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (Address.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Address);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -152,6 +173,9 @@ namespace Backend.Helloworld {
       if (other.Name.Length != 0) {
         Name = other.Name;
       }
+      if (other.Address.Length != 0) {
+        Address = other.Address;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -165,6 +189,10 @@ namespace Backend.Helloworld {
             break;
           case 10: {
             Name = input.ReadString();
+            break;
+          }
+          case 18: {
+            Address = input.ReadString();
             break;
           }
         }

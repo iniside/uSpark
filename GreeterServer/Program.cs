@@ -17,9 +17,9 @@ namespace GreeterServer
 
         public override Task<HelloReply> SayHelloAgain(HelloRequest request, ServerCallContext context)
         {
-            Channel channel = new Channel("grcp://grpc-greeter-backend", 8080, ChannelCredentials.Insecure);
+            Channel channel = new Channel(request.Address, 9000, ChannelCredentials.Insecure);
             var backendClient = new GreeterBackend.GreeterBackendClient(channel);
-
+            Console.WriteLine(request.Address + " " + channel.State.ToString());
             var reply = backendClient.SayHelloFromBackend(new BackendHelloRequest { Name = "iniside" });
             channel.ShutdownAsync().Wait(); //not neeed to wait, but easier to debug now.
             return Task.FromResult<HelloReply>(new HelloReply { Message = "Hello Again " + request.Name + " " + reply.Message });
@@ -39,12 +39,12 @@ namespace GreeterServer
             Server server = new Server
             {
                 Services = { Greeter.BindService(new GreeterImpl()) },
-                Ports = { new ServerPort("127.0.0.1", 9000, ServerCredentials.Insecure)}
+                Ports = { new ServerPort("0.0.0.0", 9000, ServerCredentials.Insecure)}
             };
 
             server.Start();
 
-            Console.WriteLine("Gretter server is linstening on port 50051");
+            Console.WriteLine("Gretter server is linstening on port 9000");
             Console.WriteLine("Press any key to stop server");
 
             int read = Console.Read();

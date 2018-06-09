@@ -26,6 +26,7 @@ spec:
     spec:
       containers:
       - name: esp
+        imagePullPolicy: Always
         image: gcr.io/endpoints-release/endpoints-runtime:1
         args: [
           "--http2_port=9100",
@@ -36,6 +37,7 @@ spec:
         ports:
           - containerPort: 9100
       - name: greeter
-        image: eu.gcr.io/sa-game-206414/greeter-service:v1
+        imagePullPolicy: Always
+        image: eu.gcr.io/sa-game-206414/greeter-server:v2
         ports:
           - containerPort: 8000

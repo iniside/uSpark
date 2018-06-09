@@ -25,19 +25,19 @@ namespace Endpoints.Hellohorld.Sraka {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChBIZWxsb1dvcmxkLnByb3RvEhplbmRwb2ludHMuaGVsbG9ob3JsZC5zcmFr",
-            "YSIcCgxIZWxsb1JlcXVlc3QSDAoETmFtZRgBIAEoCSIdCgpIZWxsb1JlcGx5",
-            "Eg8KB01lc3NhZ2UYASABKAkysgIKB0dyZWV0ZXISXgoIU2F5SGVsbG8SKC5l",
-            "bmRwb2ludHMuaGVsbG9ob3JsZC5zcmFrYS5IZWxsb1JlcXVlc3QaJi5lbmRw",
-            "b2ludHMuaGVsbG9ob3JsZC5zcmFrYS5IZWxsb1JlcGx5IgASYwoNU2F5SGVs",
-            "bG9BZ2FpbhIoLmVuZHBvaW50cy5oZWxsb2hvcmxkLnNyYWthLkhlbGxvUmVx",
-            "dWVzdBomLmVuZHBvaW50cy5oZWxsb2hvcmxkLnNyYWthLkhlbGxvUmVwbHki",
-            "ABJiCgxTYXlIZWxsb0F1dGgSKC5lbmRwb2ludHMuaGVsbG9ob3JsZC5zcmFr",
-            "YS5IZWxsb1JlcXVlc3QaJi5lbmRwb2ludHMuaGVsbG9ob3JsZC5zcmFrYS5I",
-            "ZWxsb1JlcGx5IgBiBnByb3RvMw=="));
+            "YSItCgxIZWxsb1JlcXVlc3QSDAoETmFtZRgBIAEoCRIPCgdBZGRyZXNzGAIg",
+            "ASgJIh0KCkhlbGxvUmVwbHkSDwoHTWVzc2FnZRgBIAEoCTKyAgoHR3JlZXRl",
+            "chJeCghTYXlIZWxsbxIoLmVuZHBvaW50cy5oZWxsb2hvcmxkLnNyYWthLkhl",
+            "bGxvUmVxdWVzdBomLmVuZHBvaW50cy5oZWxsb2hvcmxkLnNyYWthLkhlbGxv",
+            "UmVwbHkiABJjCg1TYXlIZWxsb0FnYWluEiguZW5kcG9pbnRzLmhlbGxvaG9y",
+            "bGQuc3Jha2EuSGVsbG9SZXF1ZXN0GiYuZW5kcG9pbnRzLmhlbGxvaG9ybGQu",
+            "c3Jha2EuSGVsbG9SZXBseSIAEmIKDFNheUhlbGxvQXV0aBIoLmVuZHBvaW50",
+            "cy5oZWxsb2hvcmxkLnNyYWthLkhlbGxvUmVxdWVzdBomLmVuZHBvaW50cy5o",
+            "ZWxsb2hvcmxkLnNyYWthLkhlbGxvUmVwbHkiAGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Endpoints.Hellohorld.Sraka.HelloRequest), global::Endpoints.Hellohorld.Sraka.HelloRequest.Parser, new[]{ "Name" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Endpoints.Hellohorld.Sraka.HelloRequest), global::Endpoints.Hellohorld.Sraka.HelloRequest.Parser, new[]{ "Name", "Address" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Endpoints.Hellohorld.Sraka.HelloReply), global::Endpoints.Hellohorld.Sraka.HelloReply.Parser, new[]{ "Message" }, null, null, null)
           }));
     }
@@ -74,6 +74,7 @@ namespace Endpoints.Hellohorld.Sraka {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public HelloRequest(HelloRequest other) : this() {
       name_ = other.name_;
+      address_ = other.address_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -93,6 +94,17 @@ namespace Endpoints.Hellohorld.Sraka {
       }
     }
 
+    /// <summary>Field number for the "Address" field.</summary>
+    public const int AddressFieldNumber = 2;
+    private string address_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Address {
+      get { return address_; }
+      set {
+        address_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as HelloRequest);
@@ -107,6 +119,7 @@ namespace Endpoints.Hellohorld.Sraka {
         return true;
       }
       if (Name != other.Name) return false;
+      if (Address != other.Address) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -114,6 +127,7 @@ namespace Endpoints.Hellohorld.Sraka {
     public override int GetHashCode() {
       int hash = 1;
       if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Address.Length != 0) hash ^= Address.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -131,6 +145,10 @@ namespace Endpoints.Hellohorld.Sraka {
         output.WriteRawTag(10);
         output.WriteString(Name);
       }
+      if (Address.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Address);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -141,6 +159,9 @@ namespace Endpoints.Hellohorld.Sraka {
       int size = 0;
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (Address.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Address);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -156,6 +177,9 @@ namespace Endpoints.Hellohorld.Sraka {
       if (other.Name.Length != 0) {
         Name = other.Name;
       }
+      if (other.Address.Length != 0) {
+        Address = other.Address;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -169,6 +193,10 @@ namespace Endpoints.Hellohorld.Sraka {
             break;
           case 10: {
             Name = input.ReadString();
+            break;
+          }
+          case 18: {
+            Address = input.ReadString();
             break;
           }
         }

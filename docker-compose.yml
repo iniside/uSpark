@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  greeterserver:
-    image: ${DOCKER_REGISTRY}greeterserver
-    build:
-      context: .
-      dockerfile: GreeterServer/Dockerfile

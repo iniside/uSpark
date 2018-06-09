@@ -16,8 +16,9 @@ namespace uSpark
 
             Channel channel = new Channel("35.189.231.210:80", ChannelCredentials.Insecure);
             var client = new Greeter.GreeterClient(channel);
-            String user = "iniside";
-            var reply = client.SayHello(new HelloRequest { Name = user });
+            String user = "iniside"; //10.27.241.124
+            //grpc-greeter-backend.default.svc.cluster.local
+            var reply = client.SayHelloAgain(new HelloRequest { Name = user, Address = "grpc-greeter-backend" });
 
             Console.WriteLine("Response message: " + reply.Message);
 

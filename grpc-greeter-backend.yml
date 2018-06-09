@@ -30,6 +30,7 @@ spec:
     spec:
       containers:
       - name: greeter-backend
+        imagePullPolicy: Always
         image: eu.gcr.io/sa-game-206414/greeter-backend:v1
         ports:
           - containerPort: 9000

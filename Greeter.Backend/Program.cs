@@ -24,12 +24,12 @@ namespace Greeter.Backend
             Server server = new Server
             {
                 Services = { GreeterBackend.BindService(new GreeterBackendImpl()) },
-                Ports = { new ServerPort("127.0.0.1", 9000, ServerCredentials.Insecure) }
+                Ports = { new ServerPort("0.0.0.0", 9000, ServerCredentials.Insecure) }
             };
 
             server.Start();
 
-            Console.WriteLine("Gretter server is linstening on port 50051");
+            Console.WriteLine("Gretter server is linstening on port 29000");
             Console.WriteLine("Press any key to stop server");
 
             int read = Console.Read();
